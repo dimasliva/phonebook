@@ -83,24 +83,5 @@
         </div>
     </div>
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-    <script type="text/javascript">
-        // $(document).ready(function () {
-        //     $('.btn-del').click(function () {
-        //         const id = $(this).attr('id');
-        //         $.post("app/remove.php",
-        //             {
-        //                 id: id
-        //             },
-        //             (data) => {
-        //                 if(data) {
-        //                     $(this).parent().hide(600);
-        //                 }
-        //             }
-        //         );
-        //     });
-        // })
-    </script>
 </body>
 </html>
