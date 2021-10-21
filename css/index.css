@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container {
+    width: 1200px;
+    margin: auto;
+    height: 100%;
+    position: relative;
+}
+.phonebook {
+}
+.phonebook th {
+    border: 1px solid black;
+}
+.phonebook td {
+    width: 250px;
+    padding: 10px 10px;
+    border: 1px solid black;
+}
+.phonebook td:nth-child(3) {
+    width: 100px;
+}
+.btn {
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    padding: 10px;
+    color: white;
+    font-family: Arial;
+    background-color: #4784ef;
+    cursor: pointer;
+}
+.btn-add {
+    background-color: forestgreen;
+}
+.btn-del {
+    background-color: red;
+}
+.addInput {
+    border: transparent;
+    border-radius: 15px;
+    outline: none;
+    font-size: 100px;
+}
