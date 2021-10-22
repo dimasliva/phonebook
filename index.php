@@ -1,5 +1,15 @@
 <?php
-    require "db_conn.php";
+require "db_conn.php";
+if (isset($_GET['id'])) {
+
+    $id = $_GET['id'];
+    $edit_state = true;
+    $sql = "SELECT * FROM telephones WHERE id=:id";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([':id' => $id]);
+    $personEdit = $stmt->fetch(PDO::FETCH_OBJ);
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -15,73 +25,105 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="phonebook">
-            <table class="phonebook">
+<div class="container">
+    <div class="phonebook">
+        <table class="phonebook">
 
+            <tr class="phonebook__header">
+                <th class="phonebook__item">ФИО</th>
+                <th class="phonebook__item">Телефон</th>
+                <th class="phonebook__item">Кем приходится</th>
+                <th class="phonebook__item">Кнопки действий</th>
+            </tr>
+            <?php
+            $people = $conn->query("SELECT * FROM telephones ORDER BY id DESC");
+            ?>
+
+            <?php if ($people->rowCount() === 0) { ?>
+
+            <?php } ?>
+
+            <?php foreach ($people as $person): ?>
                 <tr class="phonebook__header">
-                    <th class="phonebook__item">ФИО</th>
-                    <th class="phonebook__item">Телефон</th>
-                    <th class="phonebook__item">Кем приходится</th>
-                    <th class="phonebook__item">Кнопки действий</th>
-                </tr>
-                <?php
-                    $people = $conn->query("SELECT * FROM telephones ORDER BY id DESC");
-                ?>
-
-                <?php if($people->rowCount() === 0){ ?>
-
-                <?php } ?>
-
-                <?php while ($person = $people->fetch(PDO::FETCH_ASSOC)) {?>
-                <tr class="phonebook__header">
-                    <td class="phonebook__item"><?php echo $person['fname']?></td>
-                    <td class="phonebook__item">+<?php echo $person['phone']?></td>
-                    <td class="phonebook__item"><?php echo $person['bank']?></td>
+                    <td class="phonebook__item"><?php echo $person['fname'] ?></td>
+                    <td class="phonebook__item">+<?php echo $person['phone'] ?></td>
+                    <td class="phonebook__item"><?php echo $person['bank'] ?></td>
                     <td class="phonebook__item">
-                        <button id="<?php echo $person['id']?>" class="btn btn-edit">Редактировать</button>
-                        <a href="app/remove.php?id=<?php echo $person['id'];?>">
-                            <button id="<?php echo $person['id']?>" class="btn btn-del">Удалить</button>
+
+                        <!--Edit-->
+                        <a href="index.php?id=<?php echo $person['id']; ?>">
+                            <button id="<?php echo $person['id'] ?>" name="update" class="btn btn-edit" type="submit">
+                                Редактировать
+                            </button>
+                        </a>
+
+                        <!--Delete-->
+                        <a href="app/remove.php?id=<?php echo $person['id']; ?>">
+                            <button id="<?php echo $person['id'] ?>" class="btn btn-del">Удалить</button>
                         </a>
                     </td>
                 </tr>
-                <?php } ?>
-            </table>
-        </div>
-        <div class="add-section">
+            <?php endforeach; ?>
+        </table>
+    </div>
+    <div class="add-section">
+        <?php if ($edit_state == true) { ?>
+            <form action="app/edit.php?id=<?php echo $person['id'] ?>" method="POST" autocomplete="on">
+                <input type="text" name="fname" placeholder="Enter your full name" class="addInput"
+                       value="<?php echo $personEdit->fname; ?>" class="addInput"/>
+                <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"
+                       value="<?php echo $personEdit->phone ?>"/>
+                <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"
+                       value="<?php echo $personEdit->bank; ?>"/>
+                <button class="btn btn-add" name="update" type="submit">Edit</button>
+
+            </form>
+        <?php } else { ?>
+
             <form action="app/add.php" method="POST" autocomplete="on">
-                <?php if(isset($_GET['mess']) && $_GET['mess'] == 'fnameError') {?>
-                    <input type="text" name="fname" placeholder="Enter your full name" style="border-color: #ff6666" class="addInput"/>
+                <?php if (isset($_GET['mess']) && $_GET['mess'] == 'fnameError') { ?>
+                    <input type="text" name="fname" placeholder="Enter your full name" style="border-color: #ff6666"
+                           class="addInput"/>
                     <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"/>
                     <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"/>
                     <button class="btn btn-add" type="submit">Add</button>
 
-                <?php } else if(isset($_GET['mess']) && $_GET['mess'] == 'phoneError') {?>
-                <input type="text" name="fname" placeholder="Enter your full name" class="addInput"/>
-                <input type="text" name="phone" placeholder="Enter your number of phone" style="border-color: #ff6666" class="addInput"/>
-                <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"/>
-                <button class="btn btn-add" type="submit">Add</button>
+                <?php } else if (isset($_GET['mess']) && $_GET['mess'] == 'phoneError') { ?>
+                    <input type="text" name="fname" placeholder="Enter your full name" class="addInput"/>
+                    <input type="text" name="phone" placeholder="Enter your number of phone"
+                           style="border-color: #ff6666"
+                           class="addInput"/>
+                    <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"/>
+                    <button class="btn btn-add" type="submit">Add</button>
 
-                <?php } else if(isset($_GET['mess']) && $_GET['mess'] == 'bankError') {?>
+                <?php } else if (isset($_GET['mess']) && $_GET['mess'] == 'bankError') { ?>
                     <input type="text" name="fname" placeholder="Enter your full name" class="addInput"/>
                     <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"/>
-                    <input type="text" name="bank" placeholder="Enter name of your bank" style="border-color: #ff6666" class="addInput"/>
+                    <input type="text" name="bank" placeholder="Enter name of your bank" style="border-color: #ff6666"
+                           class="addInput"/>
                     <button class="btn btn-add" type="submit">Add</button>
-                <?php } else if(isset($_GET['mess']) && $_GET['mess'] == 'Error') {?>
-                    <input type="text" name="fname" placeholder="Enter your full name" style="border-color: #ff6666" class="addInput"/>
-                    <input type="text" name="phone" placeholder="Enter your number of phone" style="border-color: #ff6666" class="addInput"/>
-                    <input type="text" name="bank" placeholder="Enter name of your bank" style="border-color: #ff6666" class="addInput"/>
+                <?php } else if (isset($_GET['mess']) && $_GET['mess'] == 'Error') { ?>
+                    <input type="text" name="fname" placeholder="Enter your full name" style="border-color: #ff6666"
+                           class="addInput"/>
+                    <input type="text" name="phone" placeholder="Enter your number of phone"
+                           style="border-color: #ff6666"
+                           class="addInput"/>
+                    <input type="text" name="bank" placeholder="Enter name of your bank" style="border-color: #ff6666"
+                           class="addInput"/>
                     <button class="btn btn-add" type="submit">Add</button>
-                <?php } else {?>
 
-                <input type="text" name="fname" placeholder="Enter your full name" class="addInput"/>
-                <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"/>
-                <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"/>
-                <button class="btn btn-add" type="submit">Add</button>
-                <?php }?>
+                <?php } else { ?>
+
+                    <input type="text" name="fname" placeholder="Enter your full name" class="addInput"/>
+                    <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"/>
+                    <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"/>
+                    <button class="btn btn-add" type="submit">Add</button>
+                <?php } ?>
             </form>
-        </div>
+        <?php } ?>
+
     </div>
+</div>
 
 </body>
 </html>

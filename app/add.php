@@ -31,3 +31,5 @@ if(isset($_POST['fname']) || isset($_POST['phone']) || isset($_POST['bank'])) {
         exit();
     }
 }
+
+

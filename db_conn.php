@@ -5,6 +5,7 @@ $dbUser="root";
 $dbPass="root";
 $dbName="test";
 $dbport="3306";
+$edit_state = false;
 
 try {
     $dsn = "mysql:host=$dbHost;dbname=$dbName;port=$dbport";

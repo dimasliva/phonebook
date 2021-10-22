@@ -6,10 +6,10 @@
 
     $sql = "DELETE FROM telephones WHERE id = '$id'";
     $stmt = $conn->prepare($sql);
-    $res = $stmt->execute([':id' == $id]);
+    $res = $stmt->execute([$id]);
 
     if ($res) {
-        echo "Deleting: $id";
+        header('Location: ../index.php');
     } else {
         echo "Failed";
     }
