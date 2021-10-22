@@ -48,6 +48,23 @@ background-color: forestgreen;
 .btn-del {
 background-color: red;
 }
+.button-add {
+background-color: #37D061;
+border: 2px solid white;
+border-radius: 30px;
+text-decoration: none;
+padding: 10px 28px;
+color: white;
+margin-top: 10px;
+display: inline-block;
+transition: .3s all;
+}
+.button-add:hover {
+background-color: white;
+color: #2A9748;
+border: 2px solid #2A9748;
+}
+
 .addInput {
 width: 300px;
 font-size:18px;
@@ -91,12 +108,11 @@ height: 100%;
 position: absolute;
 top: 0;
 display: flex;
-justify-content: center;
-align-items: center;
+
 }
 
 .add-section-contents {
-height: 350px;
+height: 90%;
 width: 500px;
 background-color: white;
 text-align: center;

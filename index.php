@@ -51,12 +51,13 @@ if (isset($_GET['id'])) {
                     <td class="phonebook__item">
 
                         <!--Edit-->
-                        <a href="index.php?id=<?php echo $person['id']; ?>">
-                            <button id="<?php echo $person['id'] ?>" name="update" class="btn btn-edit" type="submit">
+
+                        <a href="index.php?id=<?php echo $person['id']; ?>" class="edit">
+                            <button id="<?php echo $person['id'] ?>" name="update" class="btn btn-edit"
+                                    type="submit">
                                 Редактировать
                             </button>
                         </a>
-
                         <!--Delete-->
                         <a href="app/remove.php?id=<?php echo $person['id']; ?>">
                             <button id="<?php echo $person['id'] ?>" class="btn btn-del">Удалить</button>
@@ -68,12 +69,21 @@ if (isset($_GET['id'])) {
     </div>
 
     <!--  Button click  -->
+    <?php if (isset($_GET['id'])) { ?>
     <section class="hero">
         <div class="hero-content">
-            <h1>Let's create a person</h1>
-            <a href="#" id="button" class="button">Click Me</a>
+            <h1>Редактировать клиента</h1>
+            <a href="javascript:void(0)" id="button" class="button">Редактировать</a>
         </div>
     </section>
+    <?php } else { ?>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Создание клиента</h1>
+                <a href="javascript:void(0)" id="button" class="button-add">Создать</a>
+            </div>
+        </section>
+    <?php } ?>
 
     <!--    -->
     <div class="add-section">
@@ -84,7 +94,8 @@ if (isset($_GET['id'])) {
                  alt="">
 
             <?php if ($edit_state == true) { ?>
-                <form action="app/edit.php?id=<?php echo $person['id'] ?>" method="POST" autocomplete="on" class="contactForm">
+                <form action="app/edit.php?id=<?php echo $person['id'] ?>" method="POST" autocomplete="on"
+                      class="contactForm">
                     <input type="text" name="fname" placeholder="Enter your full name" class="addInput"
                            value="<?php echo $personEdit->fname; ?>" class="addInput"/>
                     <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"
@@ -148,14 +159,13 @@ if (isset($_GET['id'])) {
         document.querySelector('.add-section').classList.add("active");
     });
 
-    document.querySelector('#show.close').addEventListener("click", function() {
+    document.querySelector('#show.close').addEventListener("click", function () {
         document.querySelector('.add-section').classList.remove("active");
     });
 
-    document.getElementById('btn-edit').addEventListener('click', function () {
-        document.querySelector('.add-section').style.display = 'flex';
-    });
-
+    // document.querySelector('.edit').addEventListener('click', function () {
+    //     document.querySelector('.add-section').classList.add("active");
+    // });
 
 
 </script>
