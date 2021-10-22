@@ -66,64 +66,98 @@ if (isset($_GET['id'])) {
             <?php endforeach; ?>
         </table>
     </div>
+
+    <!--  Button click  -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Let's create a person</h1>
+            <a href="#" id="button" class="button">Click Me</a>
+        </div>
+    </section>
+
+    <!--    -->
     <div class="add-section">
-        <?php if ($edit_state == true) { ?>
-            <form action="app/edit.php?id=<?php echo $person['id'] ?>" method="POST" autocomplete="on">
-                <input type="text" name="fname" placeholder="Enter your full name" class="addInput"
-                       value="<?php echo $personEdit->fname; ?>" class="addInput"/>
-                <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"
-                       value="<?php echo $personEdit->phone ?>"/>
-                <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"
-                       value="<?php echo $personEdit->bank; ?>"/>
-                <button class="btn btn-add" name="update" type="submit">Edit</button>
+        <div class="add-section-contents">
 
-            </form>
-        <?php } else { ?>
+            <div class="close" id="show">+</div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/Gnome-stock_person.svg/480px-Gnome-stock_person.svg.png"
+                 alt="">
 
-            <form action="app/add.php" method="POST" autocomplete="on">
-                <?php if (isset($_GET['mess']) && $_GET['mess'] == 'fnameError') { ?>
-                    <input type="text" name="fname" placeholder="Enter your full name" style="border-color: #ff6666"
-                           class="addInput"/>
-                    <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"/>
-                    <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"/>
-                    <button class="btn btn-add" type="submit">Add</button>
+            <?php if ($edit_state == true) { ?>
+                <form action="app/edit.php?id=<?php echo $person['id'] ?>" method="POST" autocomplete="on" class="contactForm">
+                    <input type="text" name="fname" placeholder="Enter your full name" class="addInput"
+                           value="<?php echo $personEdit->fname; ?>" class="addInput"/>
+                    <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"
+                           value="<?php echo $personEdit->phone ?>"/>
+                    <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"
+                           value="<?php echo $personEdit->bank; ?>"/>
+                    <button class="btn btn-add" name="update" type="submit">Edit</button>
 
-                <?php } else if (isset($_GET['mess']) && $_GET['mess'] == 'phoneError') { ?>
-                    <input type="text" name="fname" placeholder="Enter your full name" class="addInput"/>
-                    <input type="text" name="phone" placeholder="Enter your number of phone"
-                           style="border-color: #ff6666"
-                           class="addInput"/>
-                    <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"/>
-                    <button class="btn btn-add" type="submit">Add</button>
+                </form>
+            <?php } else { ?>
 
-                <?php } else if (isset($_GET['mess']) && $_GET['mess'] == 'bankError') { ?>
-                    <input type="text" name="fname" placeholder="Enter your full name" class="addInput"/>
-                    <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"/>
-                    <input type="text" name="bank" placeholder="Enter name of your bank" style="border-color: #ff6666"
-                           class="addInput"/>
-                    <button class="btn btn-add" type="submit">Add</button>
-                <?php } else if (isset($_GET['mess']) && $_GET['mess'] == 'Error') { ?>
-                    <input type="text" name="fname" placeholder="Enter your full name" style="border-color: #ff6666"
-                           class="addInput"/>
-                    <input type="text" name="phone" placeholder="Enter your number of phone"
-                           style="border-color: #ff6666"
-                           class="addInput"/>
-                    <input type="text" name="bank" placeholder="Enter name of your bank" style="border-color: #ff6666"
-                           class="addInput"/>
-                    <button class="btn btn-add" type="submit">Add</button>
+                <form action="app/add.php" method="POST" autocomplete="on" class="contactForm">
+                    <?php if (isset($_GET['mess']) && $_GET['mess'] == 'fnameError') { ?>
+                        <input type="text" name="fname" placeholder="Enter your full name" style="border-color: #ff6666"
+                               class="addInput"/>
+                        <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"/>
+                        <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"/>
+                        <button class="btn btn-add" type="submit">Add</button>
 
-                <?php } else { ?>
+                    <?php } else if (isset($_GET['mess']) && $_GET['mess'] == 'phoneError') { ?>
+                        <input type="text" name="fname" placeholder="Enter your full name" class="addInput"/>
+                        <input type="text" name="phone" placeholder="Enter your number of phone"
+                               style="border-color: #ff6666"
+                               class="addInput"/>
+                        <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"/>
+                        <button class="btn btn-add" type="submit">Add</button>
 
-                    <input type="text" name="fname" placeholder="Enter your full name" class="addInput"/>
-                    <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"/>
-                    <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"/>
-                    <button class="btn btn-add" type="submit">Add</button>
-                <?php } ?>
-            </form>
-        <?php } ?>
+                    <?php } else if (isset($_GET['mess']) && $_GET['mess'] == 'bankError') { ?>
+                        <input type="text" name="fname" placeholder="Enter your full name" class="addInput"/>
+                        <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"/>
+                        <input type="text" name="bank" placeholder="Enter name of your bank"
+                               style="border-color: #ff6666"
+                               class="addInput"/>
+                        <button class="btn btn-add" type="submit">Add</button>
+                    <?php } else if (isset($_GET['mess']) && $_GET['mess'] == 'Error') { ?>
+                        <input type="text" name="fname" placeholder="Enter your full name" style="border-color: #ff6666"
+                               class="addInput"/>
+                        <input type="text" name="phone" placeholder="Enter your number of phone"
+                               style="border-color: #ff6666"
+                               class="addInput"/>
+                        <input type="text" name="bank" placeholder="Enter name of your bank"
+                               style="border-color: #ff6666"
+                               class="addInput"/>
+                        <button class="btn btn-add" type="submit">Add</button>
 
+                    <?php } else { ?>
+
+                        <input type="text" name="fname" placeholder="Enter your full name" class="addInput"/>
+                        <input type="text" name="phone" placeholder="Enter your number of phone" class="addInput"/>
+                        <input type="text" name="bank" placeholder="Enter name of your bank" class="addInput"/>
+                        <button class="btn btn-add" type="submit">Add</button>
+                    <?php } ?>
+                </form>
+            <?php } ?>
+
+        </div>
     </div>
 </div>
+<script>
+    document.querySelector('#button').addEventListener('click', function () {
+        document.querySelector('.add-section').classList.add("active");
+    });
 
+    document.querySelector('#show.close').addEventListener("click", function() {
+        document.querySelector('.add-section').classList.remove("active");
+    });
+
+    document.getElementById('btn-edit').addEventListener('click', function () {
+        document.querySelector('.add-section').style.display = 'flex';
+    });
+
+
+
+</script>
 </body>
 </html>

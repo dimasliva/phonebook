@@ -25,7 +25,7 @@ if(isset($_POST['update'])) {
     } else {
         echo "</br>Error updating record: " . $conn->errorInfo();
     }
-    echo $stmt->rowCount()." records UPDATED";
     $conn = null;
     exit();
 }
+

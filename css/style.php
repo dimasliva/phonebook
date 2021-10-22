@@ -55,3 +55,82 @@ padding: 8px 12px;
 border-radius: 5px;
 outline: none;
 }
+
+.button {
+background-color: #4784ef;
+border: 2px solid white;
+border-radius: 30px;
+text-decoration: none;
+padding: 10px 28px;
+color: white;
+margin-top: 10px;
+display: inline-block;
+transition: .3s all;
+}
+.button:hover {
+background-color: white;
+color: #4784ef;
+border: 2px solid #4784ef;
+}
+
+.add-section {
+background-color: rgba(0, 0, 0, 0.8);
+width: 100%;
+height: 100%;
+position: absolute;
+top: 0;
+display: none;
+justify-content: center;
+align-items: center;
+}
+
+.add-section.active{
+background-color: rgba(0, 0, 0, 0.8);
+width: 100%;
+height: 100%;
+position: absolute;
+top: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.add-section-contents {
+height: 350px;
+width: 500px;
+background-color: white;
+text-align: center;
+padding: 20px;
+position: relative;
+border-radius: 4px;
+}
+
+img {
+    width: 100px;
+}
+
+input {
+margin: 15px auto;
+display: block;
+width: 50%;
+padding: 8px;
+border: 1px solid gray;
+}
+
+.close {
+position: absolute;
+top: 0;
+right: 10px;
+font-size: 42px;
+color: #333;
+transform: rotate(45deg);
+cursor: pointer;
+transition: .3s all;
+}
+.close:hover {
+color: #666;
+}
+
+#show:checked ~ .add-section{
+    display:none;
+}
