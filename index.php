@@ -68,7 +68,7 @@ if (isset($_GET['id'])) {
         </table>
     </div>
 
-    <!--  Button click  -->
+    <!--  Edit click  -->
     <?php if (isset($_GET['id'])) { ?>
     <section class="hero">
         <div class="hero-content">
@@ -76,6 +76,7 @@ if (isset($_GET['id'])) {
             <a href="javascript:void(0)" id="button" class="button">Редактировать</a>
         </div>
     </section>
+    <!--    Create button    -->
     <?php } else { ?>
         <section class="hero">
             <div class="hero-content">
