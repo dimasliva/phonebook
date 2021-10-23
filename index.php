@@ -18,8 +18,9 @@ if (isset($_GET['id'])) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/x-icon" href="icon.png" />
     <link rel="stylesheet" href="css/style.php" media="screen">
-    <title>Document</title>
+    <title>Telephonebook</title>
     <style>
 
     </style>
