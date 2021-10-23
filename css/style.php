@@ -93,7 +93,7 @@ border: 2px solid #4784ef;
 .add-section {
 background-color: rgba(0, 0, 0, 0.8);
 width: 100%;
-height: 100%;
+height: 1000px;
 position: absolute;
 top: 0;
 display: none;
@@ -105,6 +105,7 @@ align-items: center;
 background-color: rgba(0, 0, 0, 0.8);
 width: 100%;
 height: 100%;
+height: 400px;
 position: absolute;
 top: 0;
 display: flex;
