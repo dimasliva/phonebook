@@ -1,5 +1,13 @@
 <?php
 require "db_conn.php";
+//Deleting
+if($_GET['iddel']) {
+    $id=$_GET['iddel'];
+    $sql = "DELETE FROM telephones WHERE id = $id";
+    $conn->exec($sql);
+
+}
+
 if (isset($_GET['id'])) {
 
     $id = $_GET['id'];
@@ -60,8 +68,8 @@ if (isset($_GET['id'])) {
                             </button>
                         </a>
                         <!--Delete-->
-                        <a href="app/remove.php?id=<?php echo $person['id']; ?>">
-                            <button id="<?php echo $person['id'] ?>" class="btn btn-del">Удалить</button>
+                        <a href="index.php?iddel=<?php echo $person['id']; ?>">
+                            <button id="<?php echo $person['id'] ?>" class="btn btn-del" name="delete">Удалить</button>
                         </a>
                     </td>
                 </tr>
